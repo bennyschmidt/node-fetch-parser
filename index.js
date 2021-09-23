@@ -1,6 +1,10 @@
 module.exports = methods => async (method, params) => {
-  const response = await methods[method](params);
-  const data = await response.json();
+  try {
+    const response = await methods[method](params);
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    return error;
+  }
 };
